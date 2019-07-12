@@ -1,4 +1,4 @@
-# regex
+# crypto
 
 Library of common cryptographic algorithms and functions for Pony. Requires LibreSSL or OpenSSL. See installation for more details. 
 
