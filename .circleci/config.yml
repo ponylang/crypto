@@ -4,32 +4,32 @@ jobs:
     docker:
       - image: ponylang/ponyc:release
     steps:
-      - run: apt-get install -y libssl-dev
       - checkout
+      - run: bash .ci-scripts/install-openssl-0.9.8.bash
       - run: make test config=release
 
   debug-vs-ponyc-release:
     docker:
       - image: ponylang/ponyc:release
     steps:
-      - run: apt-get install -y libssl-dev
       - checkout
+      - run: bash .ci-scripts/install-openssl-0.9.8.bash
       - run: make test config=debug
 
   release-vs-ponyc-master:
     docker:
       - image: ponylang/ponyc:latest
     steps:
-      - run: apt-get install -y libssl-dev
       - checkout
+      - run: bash .ci-scripts/install-openssl-0.9.8.bash
       - run: make test config=release
 
   debug-vs-ponyc-master:
     docker:
       - image: ponylang/ponyc:latest
     steps:
-      - run: apt-get install -y libssl-dev
       - checkout
+      - run: bash .ci-scripts/install-openssl-0.9.8.bash
       - run: make test config=debug
 
 workflows:
