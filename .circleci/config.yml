@@ -53,9 +53,24 @@ jobs:
       - zulip/status:
           fail_only: true
 
+  cut-release:
+    docker:
+      - image: ponylang/main.actor-ci:standard
+    steps:
+      - checkout
+      - run: bash .ci-scripts/release.bash "$CIRCLE_TAG" "$GITHUB_TOKEN"
+
+  generate-documentation-pr-for-main-dot-actor:
+    docker:
+      - image: ponylang/main.actor-ci:standard
+    steps:
+      - checkout
+      - run: bash .ci-scripts/upload-release-documentation-to-main-actor.bash "$CIRCLE_TAG" "$GITHUB_TOKEN"
+
 workflows:
   version: 2.1
-  commit:
+
+  on-every-commit:
     jobs:
       - verify-changelog:
           context: org-global
@@ -64,7 +79,27 @@ workflows:
       - debug-vs-ponyc-release:
           context: org-global
 
-  nightly:
+  create-release:
+    jobs:
+      - cut-release:
+          context: org-global
+          filters:
+            tags:
+              only: /^release-\d+\.\d+\.\d+$/
+            branches:
+              ignore: /.*/
+
+  on-release-being-tagged:
+    jobs:
+      - generate-documentation-pr-for-main-dot-actor:
+          context: org-global
+          filters:
+            tags:
+              only: /^\d+\.\d+\.\d+$/
+            branches:
+              ignore: /.*/
+
+  daily-check-for-breakage:
     triggers:
       - schedule:
           cron: "0 0 * * *"
@@ -74,6 +109,5 @@ workflows:
     jobs:
       - release-vs-ponyc-master:
           context: org-global
-
       - debug-vs-ponyc-master:
           context: org-global

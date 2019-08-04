@@ -1,8 +1,12 @@
 config ?= release
 
+PACKAGE := crypto
+COMPILE_WITH := ponyc
+
 BUILD_DIR ?= build/$(config)
-SRC_DIR ?= crypto
-tests_binary := $(BUILD_DIR)/crypto
+SRC_DIR ?= $(PACKAGE)
+tests_binary := $(BUILD_DIR)/$(PACKAGE)
+docs_dir := build/$(PACKAGE)-docs
 
 ifdef config
 	ifeq (,$(filter $(config),debug release))
@@ -11,9 +15,9 @@ ifdef config
 endif
 
 ifeq ($(config),release)
-	PONYC = ponyc
+	PONYC = ${COMPILE_WITH}
 else
-	PONYC = ponyc --debug
+	PONYC = ${COMPILE_WITH} --debug
 endif
 
 SOURCE_FILES := $(shell find $(SRC_DIR) -name \*.pony)
@@ -34,6 +38,12 @@ clean:
 
 realclean:
 	rm -rf build
+
+$(docs_dir): $(GEN_FILES) $(SOURCE_FILES)
+	rm -rf $(docs_dir)
+	${PONYC} --docs-public --pass=docs --output build $(SRC_DIR)
+
+docs: $(docs_dir)
 
 TAGS:
 	ctags --recurse=yes $(SRC_DIR)
