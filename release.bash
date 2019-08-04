@@ -3,8 +3,8 @@
 set -o errexit
 set -o nounset
 
-USERNAME={USERNAME}
-REPONAME={REPO}
+USERNAME=ponylang
+REPONAME=crypto
 
 verify_args() {
   echo "Cutting a release for version $version with commit $commit"
