@@ -3,7 +3,7 @@
 set -o errexit
 set -o nounset
 
-USERNAME="ponylang"
+REPO_OWNER="ponylang"
 REPO="crypto"
 GITHUB_USER="ponylang-main"
 
@@ -70,7 +70,7 @@ json=$(jq -n \
 
 echo "Uploading release notes..."
 
-result=$(curl -X POST "https://api.github.com/repos/${USERNAME}/${REPO}/releases" \
+result=$(curl -X POST "https://api.github.com/repos/${REPO_OWNER}/${REPO}/releases" \
   -H "Content-Type: application/x-www-form-urlencoded" \
   -u "${GITHUB_USER}:${GITHUB_TOKEN}" \
   --data "${json}")
