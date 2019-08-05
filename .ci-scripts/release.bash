@@ -25,8 +25,9 @@ GITHUB_TOKEN=$2
 VERSION="${TAG/release-/}"
 
 ### this doesn't account for master changing commit, assumes we are HEAD
-# or can otherwise push without issue. that shouldl error out without issue.
-# leaving us to restart from a different HEAD commit
+# or can otherwise push without issue. If we aren't, this should error out
+# without issue; leaving us to restart from a different HEAD commit
+
 # update CHANGELOG
 changelog-tool release "${VERSION}" -e
 
