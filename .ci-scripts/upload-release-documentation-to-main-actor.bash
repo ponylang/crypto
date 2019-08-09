@@ -1,16 +1,9 @@
 #!/bin/bash
 
-set -eu
+set -o errexit
+set -o nounset
 
-# Needs to be supplied
-REPO_OWNER="ponylang"
-PACKAGE_NAME="crypto"
-GITHUB_USER="ponylang-main"
-
-# Who we are for git
-git config --global user.email "ponylang.main@gmail.com"
-git config --global user.name "Main Pony"
-git config --global push.default simple
+source env.sh
 
 # Gather expected arguments.
 if [ $# -lt 2 ]
