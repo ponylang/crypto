@@ -14,10 +14,18 @@ ifdef config
 	endif
 endif
 
-ifeq ($(config),release)
-	PONYC = ${COMPILE_WITH}
+ifeq ($(ssl), 1.1.x)
+  SSL = -Dopenssl_1.1.x
+else ifeq ($(ssl), 0.9.0)
+  SSL = -Dopenssl_0.9.0
 else
-	PONYC = ${COMPILE_WITH} --debug
+  $(error Unknown SSL version "$(ssl)". Must set using 'ssl=FOO')
+endif
+
+ifeq ($(config),release)
+	PONYC = ${COMPILE_WITH} ${SSL}
+else
+	PONYC = ${COMPILE_WITH} ${SSL} --debug
 endif
 
 SOURCE_FILES := $(shell find $(SRC_DIR) -name \*.pony)
