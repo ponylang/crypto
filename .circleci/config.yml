@@ -10,7 +10,7 @@ jobs:
     steps:
       - checkout
       - run: bash .ci-scripts/install-openssl-0.9.8.bash
-      - run: make test config=release
+      - run: make test config=release ssl=0.9.0
       - zulip/status:
           fail_only: true
 
@@ -20,7 +20,7 @@ jobs:
     steps:
       - checkout
       - run: bash .ci-scripts/install-openssl-0.9.8.bash
-      - run: make test config=debug
+      - run: make test config=debug ssl=0.9.0
       - zulip/status:
           fail_only: true
 
@@ -30,7 +30,7 @@ jobs:
     steps:
       - checkout
       - run: bash .ci-scripts/install-openssl-0.9.8.bash
-      - run: make test config=release
+      - run: make test config=release ssl=0.9.0
       - zulip/status:
           fail_only: true
 
@@ -40,7 +40,7 @@ jobs:
     steps:
       - checkout
       - run: bash .ci-scripts/install-openssl-0.9.8.bash
-      - run: make test config=debug
+      - run: make test config=debug ssl=0.9.0
       - zulip/status:
           fail_only: true
 
