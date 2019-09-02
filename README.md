@@ -16,7 +16,8 @@ Production ready.
 ```json
 { 
   "type": "github",
-  "repo": "ponylang/crypto"
+  "repo": "ponylang/crypto",
+  "tag": "1.0.0"
 }
 ```
 
