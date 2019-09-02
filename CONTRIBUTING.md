@@ -12,12 +12,7 @@ Additional notes regarding formatting:
 
 * [Documentation formatting](#documentation-formatting)
 * [Code formatting](#code-formatting)
-* [File Naming](#standard-library-file-naming)
-
-## Feature request
-For any feature requests or enhancements to the Pony distribution, it is quite likely that you have to go through our [RFC process](https://github.com/ponylang/rfcs). Before opening or submitting any feature requests, please make sure you are familiar with the RFC process and follow the process as required.
-
-If you submit a pull request to implement a new feature without going through the RFC process, it may be closed with a polite request to submit an RFC first.
+* [File naming](#file-naming)
 
 ## Bug report
 
@@ -33,17 +28,17 @@ Provide the following details:
 
 If possible, try to isolate the problem and provide just enough code to demonstrate it. Add any related information which might help to fix the issue.
 
-## How to Contribute
+## How to contribute
 
 This project uses a fairly standard GitHub pull request workflow. If you have already contributed to a project via GitHub pull request, you can skip this section and proceed to the [specific details of what we ask for in a pull request](#pull-request). If this is your first time contributing to a project via GitHub, read on.
 
 Here is the basic GitHub workflow:
 
-1. Fork this repo. you can do this via the GitHub website. This will result in you having your own copy of the repo under your GitHub account. 
+1. Fork this repo. you can do this via the GitHub website. This will result in you having your own copy of the repo under your GitHub account.
 2. Clone your forked repo to your local machine
 3. Make a branch for your change
 4. Make your change on that branch
-5. Push your change to your repo 
+5. Push your change to your repo
 6. Use the github ui to open a PR
 
 Some things to note that aren't immediately obvious to folks just starting out:
@@ -52,9 +47,7 @@ Some things to note that aren't immediately obvious to folks just starting out:
 2. Any changes you make on your branch that you used for one PR will automatically appear in another PR so if you have more than 1 PR, be sure to always create different branches for them.
 3. Weird things happen with commit history if you don't create your PR branches off of `master` so always make sure you have the `master` branch checked out before creating a branch for a PR
 
-If you feel overwhelmed at any point, don't worry, it can be a lot to learn when you get started. You can usually find me on the [Pony Slack](https://www.ponylang.io/get-slack-invite) if you need help.
-
-You can get help using GitHub via [the official documentation](https://help.github.com/). Some hightlights include:
+You can get help using GitHub via [the official documentation](https://help.github.com/). Some highlights include:
 
 - [Fork A Repo](https://help.github.com/articles/fork-a-repo/)
 - [Creating a pull request](https://help.github.com/articles/creating-a-pull-request/)
@@ -83,19 +76,19 @@ Documentation is not "source code." As such, it should not be wrapped at 80 colu
 
 All code examples in documentation should be formatted in a fashion appropriate to the language in question.
 
-All command line examples in documentation should be presented in a copy and paste friendly fashion. Assume the user is using the `bash` shell. GitHub formatting on long command lines can be unfriendly to copy-and-paste. Long command lines should be broken up using `\` so that each line is no more than 80 columns. Wrapping at 80 columns should result in a good display experience in GitHub. Additionally, continuation lines should be indented two spaces. 
+All command line examples in documentation should be presented in a copy and paste friendly fashion. Assume the user is using the `bash` shell. GitHub formatting on long command lines can be unfriendly to copy-and-paste. Long command lines should be broken up using `\` so that each line is no more than 80 columns. Wrapping at 80 columns should result in a good display experience in GitHub. Additionally, continuation lines should be indented two spaces.
 
 OK:
 
 ```bash
-my_command --some-option foo --path-to-file ../../wallaroo/long/line/foo \
+my_command --some-option foo --path-to-file ../../project/long/line/foo \
   --some-other-option bar
 ```
 
 Not OK:
 
 ```bash
-my_command --some-option foo --path-to-file ../../wallaroo/long/line/foo --some-other-option bar
+my_command --some-option foo --path-to-file ../../project/long/line/foo --some-other-option bar
 ```
 
 Wherever possible when writing documentation, favor full command options rather than short versions. Full flags are usually much easier to modify because the meaning is clearer.
@@ -136,6 +129,6 @@ The details:
 
 All Pony sources should follow the [Pony standard library style guide](https://github.com/ponylang/ponyc/blob/master/STYLE_GUIDE.md).
 
-##  File naming
+## File naming
 
 Pony code follows the [Pony standard library file naming guidelines](https://github.com/ponylang/ponyc/blob/master/STYLE_GUIDE.md#naming).
