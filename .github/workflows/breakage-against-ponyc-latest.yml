@@ -2,7 +2,7 @@ name: Nightly breakage against ponyc master
 
 on:
   schedule:
-    - cron: "0 2 * * *"
+    - cron: "0 3 * * *"
 
 jobs:
   vs-ponyc-latest:
