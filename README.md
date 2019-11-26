@@ -4,7 +4,7 @@ Library of common cryptographic algorithms and functions for Pony. Requires Libr
 
 ## Status
 
-[![CircleCI](https://circleci.com/gh/ponylang/crypto.svg?style=svg)](https://circleci.com/gh/ponylang/crypto)
+[![Actions Status](https://github.com/ponylang/crypto/workflows/vs-ponyc-latest/badge.svg)](https://github.com/ponylang/crypto/actions)
 
 Production ready.
 
