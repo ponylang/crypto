@@ -1,6 +1,6 @@
 # crypto
 
-Library of common cryptographic algorithms and functions for Pony. Requires LibreSSL or OpenSSL. See installation for more details. 
+Library of common cryptographic algorithms and functions for Pony. Requires LibreSSL or OpenSSL. See installation for more details.
 
 ## Status
 
@@ -14,10 +14,13 @@ Production ready.
 * Update your `bundle.json`
 
 ```json
-{ 
-  "type": "github",
-  "repo": "ponylang/crypto",
-  "tag": "1.0.0"
+{
+  "deps": [
+    { "type": "github",
+      "repo": "ponylang/crypto",
+      "tag": "1.0.0"
+    }
+  ]
 }
 ```
 
