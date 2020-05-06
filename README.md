@@ -10,23 +10,11 @@ Production ready.
 
 ## Installation
 
-* Install [pony-stable](https://github.com/ponylang/pony-stable)
-* Update your `bundle.json`
-
-```json
-{
-  "deps": [
-    { "type": "github",
-      "repo": "ponylang/crypto",
-      "tag": "1.0.0"
-    }
-  ]
-}
-```
-
-* `stable fetch` to fetch your dependencies
+* Install [corral](https://github.com/ponylang/corral)
+* `corral add github.com/ponylang/crypto.git`
+* `corral fetch` to fetch your dependencies
 * `use "crypto"` to include this package
-* `stable env ponyc` to compile your application
+* `corral run -- ponyc` to compile your application
 
 ## Dependencies
 
