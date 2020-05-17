@@ -9,12 +9,15 @@ jobs:
   generate-documentation:
     name: Generate documentation for release
     runs-on: ubuntu-latest
-    container:
-      image: ponylang/shared-docker-ci-release-a-library:release
     steps:
       - uses: actions/checkout@v1
-      - name: Trigger release announcement
-        run: bash .ci-scripts/release/documentation.bash
+      - name: Generate documentation and upload
+        uses: ponylang/main-actor-documentation-action@initial
+          with:
+            library_name: "crypto-docs"
+            docs_build_dir: "build/crypto-docs"
+            git_user_name: "Ponylang Main Bot"
+            git_user_email: "ponylang.main@gmail.com"
         env:
           RELEASE_TOKEN: ${{ secrets.RELEASE_TOKEN }}
 
