@@ -6,6 +6,7 @@ All notable changes to this library will be documented in this file. This projec
 
 ### Fixed
 
+- Improve performance of constant time comparison ([PR #24](https://github.com/ponylang/crypto/pull/24))
 
 ### Added
 
