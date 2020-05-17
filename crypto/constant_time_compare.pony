@@ -1,5 +1,5 @@
 primitive ConstantTimeCompare
-  fun apply(xs: ByteSeq, ys: ByteSeq): Bool =>
+  fun apply[S: ByteSeq box = ByteSeq box](xs: S, ys: S): Bool =>
   """
   Return true if the two ByteSeqs, xs and ys, have equal contents. The time
   taken is independent of the contents.
