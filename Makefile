@@ -1,7 +1,9 @@
 config ?= release
 
 PACKAGE := crypto
-COMPILE_WITH := ponyc
+GET_DEPENDENCIES_WITH := corral fetch
+CLEAN_DEPENDENCIES_WITH := corral clean
+COMPILE_WITH := corral run -- ponyc
 
 BUILD_DIR ?= build/$(config)
 SRC_DIR ?= $(PACKAGE)
@@ -42,6 +44,7 @@ unit-tests: $(tests_binary)
 	$^ --exclude=integration --sequential
 
 $(tests_binary): $(GEN_FILES) $(SOURCE_FILES) | $(BUILD_DIR)
+	$(GET_DEPENDENCIES_WITH)
 	$(PONYC) $(SSL) -o $(BUILD_DIR) $(SRC_DIR)
 
 build-examples: $(EXAMPLES_BINARIES)
@@ -51,6 +54,7 @@ $(EXAMPLES_BINARIES): $(BUILD_DIR)/%: $(SOURCE_FILES) $(EXAMPLES_SOURCE_FILES) |
 	$(PONYC) -o $(BUILD_DIR) $(EXAMPLES_DIR)/$*
 
 clean:
+	$(CLEAN_DEPENDENCIES_WITH)
 	rm -rf $(BUILD_DIR)
 
 $(docs_dir): $(GEN_FILES) $(SOURCE_FILES)
