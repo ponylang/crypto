@@ -29,7 +29,7 @@ ifeq (,$(filter $(MAKECMDGOALS),clean docs realclean TAGS))
   else ifeq ($(ssl), 0.9.0)
 	  SSL = -Dopenssl_0.9.0
   else
-    $(error Unknown SSL version "$(ssl)". Must set using 'ssl=FOO')
+    $(error Unknown SSL version "$(ssl)". Must set using 'ssl=1.1.x' or 'ssl=0.9.0')
   endif
 endif
 
