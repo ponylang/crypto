@@ -119,9 +119,6 @@ class iso _TestDigest is UnitTest
     h.assert_eq[String](
       "94af09c09bb9bb7b5c94fec6e6121482",
       ToHexString(d'.final()))
-    h.assert_eq[String](
-      "94af09c09bb9bb7b5c94fec6e6121482",
-      ToHexString(d'.final()))
 
     let d'' = Digest.sha512()
     d''.append("test")?
