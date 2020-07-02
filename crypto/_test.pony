@@ -123,16 +123,16 @@ class iso _TestDigest is UnitTest
       "7ac185f8a0e1d5f84f88bc887fd67b143732c304cc5fa9ad8e6f57f50028a8ff",
       ToHexString(d'.final()))
 
-    let s = Digest.shake128()
+    ifdef "openssl_1.1.x" then
+      let s = Digest.shake128()
       s.append("test")?
-      h.log("shake128:" + ToHexString(s.final()))
       h.assert_eq[String](
       "d3b0aa9cd8b7255622cebc631e867d40",
       ToHexString(s.final()))
 
-    let s' = Digest.shake256()
+      let s' = Digest.shake256()
       s'.append("test")?
-      h.log("shake128:" + ToHexString(s'.final()))
       h.assert_eq[String](
       "b54ff7255705a71ee2925e4a3e30e41aed489a579d5595e0df13e32e1e4dd202",
       ToHexString(s'.final()))
+    end

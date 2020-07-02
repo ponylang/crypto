@@ -104,10 +104,10 @@ class Digest
     _digest_size = 16
     ifdef "openssl_1.1.x" then
       _ctx = @EVP_MD_CTX_new[Pointer[_EVPCTX]]()
+      @EVP_DigestInit_ex[None](_ctx, @EVP_shake128[Pointer[_EVPMD]](), USize(0))
     else
-      _ctx = @EVP_MD_CTX_create[Pointer[_EVPCTX]]()
+      compile_error "openssl_0.9.x dose not support shake128"
     end
-    @EVP_DigestInit_ex[None](_ctx, @EVP_shake128[Pointer[_EVPMD]](), USize(0))
 
   new shake256() =>
     """
@@ -116,10 +116,10 @@ class Digest
     _digest_size = 32
     ifdef "openssl_1.1.x" then
       _ctx = @EVP_MD_CTX_new[Pointer[_EVPCTX]]()
+      @EVP_DigestInit_ex[None](_ctx, @EVP_shake256[Pointer[_EVPMD]](), USize(0))
     else
-      _ctx = @EVP_MD_CTX_create[Pointer[_EVPCTX]]()
+      compile_error "openssl_0.9.x dose not support shake256"
     end
-    @EVP_DigestInit_ex[None](_ctx, @EVP_shake256[Pointer[_EVPMD]](), USize(0))
 
   fun ref append(input: ByteSeq) ? =>
     """
