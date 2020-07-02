@@ -97,6 +97,30 @@ class Digest
     end
     @EVP_DigestInit_ex[None](_ctx, @EVP_sha512[Pointer[_EVPMD]](), USize(0))
 
+  new shake128() =>
+    """
+    Use the Shake128 algorithm to calculate the hash.
+    """
+    _digest_size = 16
+    ifdef "openssl_1.1.x" then
+      _ctx = @EVP_MD_CTX_new[Pointer[_EVPCTX]]()
+    else
+      _ctx = @EVP_MD_CTX_create[Pointer[_EVPCTX]]()
+    end
+    @EVP_DigestInit_ex[None](_ctx, @EVP_shake128[Pointer[_EVPMD]](), USize(0))
+
+  new shake256() =>
+    """
+    Use the Shake256 algorithm to calculate the hash.
+    """
+    _digest_size = 32
+    ifdef "openssl_1.1.x" then
+      _ctx = @EVP_MD_CTX_new[Pointer[_EVPCTX]]()
+    else
+      _ctx = @EVP_MD_CTX_create[Pointer[_EVPCTX]]()
+    end
+    @EVP_DigestInit_ex[None](_ctx, @EVP_shake256[Pointer[_EVPMD]](), USize(0))
+
   fun ref append(input: ByteSeq) ? =>
     """
     Update the Digest object with input. Throw an error if final() has been
