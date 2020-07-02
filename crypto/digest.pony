@@ -13,6 +13,18 @@ class Digest
   let _ctx: Pointer[_EVPCTX]
   var _hash: (Array[U8] val | None) = None
 
+  new md4() =>
+    """
+    Use the MD4 algorithm to calculate the hash.
+    """
+    _digest_size = 16
+    ifdef "openssl_1.1.x" then
+      _ctx = @EVP_MD_CTX_new[Pointer[_EVPCTX]]()
+    else
+      _ctx = @EVP_MD_CTX_create[Pointer[_EVPCTX]]()
+    end
+    @EVP_DigestInit_ex[None](_ctx, @EVP_md4[Pointer[_EVPMD]](), USize(0))
+    
   new md5() =>
     """
     Use the MD5 algorithm to calculate the hash.
