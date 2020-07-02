@@ -9,6 +9,8 @@ All notable changes to this library will be documented in this file. This projec
 
 ### Added
 
+- Added Shake128/256 Digest support ([PR #28](https://github.com/ponylang/crypto/pull/28))
+- Added MD4 digest ([PR #27](https://github.com/ponylang/crypto/pull/27))
 
 ### Changed
 
