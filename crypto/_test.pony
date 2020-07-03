@@ -106,23 +106,22 @@ class iso _TestDigest is UnitTest
     inputs': Array[String] val, assert': String)
   =>
     _name = "crypto/Digest/"+ name'.upper()
-    d =
-      match name'.lower()
-      | "md4" => Digest.md4()
-      | "md5" => Digest.md5()
-      | "ripemd160" => Digest.ripemd160()
-      | "sha1" => Digest.sha1()
-      | "sha224" => Digest.sha224()
-      | "sha256" => Digest.sha256()
-      | "sha384" => Digest.sha384()
-      | "sha512" => Digest.sha512()
-      | "shake128" => ifdef "openssl_1.1.x" then Digest.shake128() end
-      | "shake256" => ifdef "openssl_1.1.x" then Digest.shake256() end
-      else
-        None
-      end
-      inputs = inputs'
-      assert = assert'
+    d =  match name'.lower()
+    | "md4" => Digest.md4()
+    | "md5" => Digest.md5()
+    | "ripemd160" => Digest.ripemd160()
+    | "sha1" => Digest.sha1()
+    | "sha224" => Digest.sha224()
+    | "sha256" => Digest.sha256()
+    | "sha384" => Digest.sha384()
+    | "sha512" => Digest.sha512()
+    | "shake128" => ifdef "openssl_1.1.x" then Digest.shake128() end
+    | "shake256" => ifdef "openssl_1.1.x" then Digest.shake256() end
+    else
+      None
+    end
+    inputs = inputs'
+    assert = assert'
 
   fun name(): String => _name
 
