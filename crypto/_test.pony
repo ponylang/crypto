@@ -121,7 +121,8 @@ class iso _TestDigest is UnitTest
         match name'.lower()
         | "shake128" => Digest.shake128()
         | "shake256" => Digest.shake256()
-      end  
+        end
+      end
       inputs = inputs'
       assert = assert'
     
