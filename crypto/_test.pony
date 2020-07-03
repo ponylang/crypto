@@ -45,10 +45,10 @@ actor Main is TestList
       "3511f4825021a90cd55d37db5c3250e6bbcffc9a0d56d88b4e2878ac5b094692"+
       "cd945c6a77006272322f911c9be31fa970043daa4b61cee607566cbfa2c69b09"))
     ifdef "openssl_1.1.x" then
-    test(_TestDigest("shake128", ["message1"; "message2"],
-      "0d11671f23b6356bdf4ba8dcae37419d"))
-    test(_TestDigest("shake256", ["message1"; "message2"],
-      "80e2bbb14639e3b1fc1df80b47b67fb518b0ed26a1caddfa10d68f7992c33820"))
+      test(_TestDigest("shake128", ["message1"; "message2"],
+        "0d11671f23b6356bdf4ba8dcae37419d"))
+      test(_TestDigest("shake256", ["message1"; "message2"],
+        "80e2bbb14639e3b1fc1df80b47b67fb518b0ed26a1caddfa10d68f7992c33820"))
     end
 
 class iso _TestConstantTimeCompare is UnitTest
@@ -116,11 +116,12 @@ class iso _TestDigest is UnitTest
       | "sha256" => Digest.sha256()
       | "sha384" => Digest.sha384()
       | "sha512" => Digest.sha512()
-      | "shake128" => Digest.shake128()
-      | "shake256" => Digest.shake256()
-      else
-        None
       end
+      ifdef "openssl_1.1.x" then
+        match name'.lower()
+        | "shake128" => Digest.shake128()
+        | "shake256" => Digest.shake256()
+      end  
       inputs = inputs'
       assert = assert'
     
