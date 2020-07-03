@@ -5,12 +5,22 @@ on:
     - cron: "0 3 * * *"
 
 jobs:
-  vs-ponyc-latest:
-    name: Test against ponyc master
+  test-libressl-vs-ponyc-latest:
+    name: libressl with ponyc master
     runs-on: ubuntu-latest
     container:
-      image: ponylang/shared-docker-ci-x86-64-unknown-linux-builder-with-ssl:latest
+      image: ponylang/shared-docker-ci-x86-64-unknown-linux-builder-with-libressl:latest
     steps:
       - uses: actions/checkout@v1
       - name: Test
         run: make test config=debug ssl=0.9.0
+
+  test-openssl-1_1_x-vs-ponyc-latest:
+    name: openssl 1.1.x with ponyc master
+    runs-on: ubuntu-latest
+    container:
+      image: ponylang/shared-docker-ci-x86-64-unknown-linux-builder-with-openssl_1.1.x:latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Test
+        run: make test config=debug ssl=1.1.x
