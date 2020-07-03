@@ -98,7 +98,7 @@ class iso _TestHash[A: _TestHashFn] is UnitTest
 
 class iso _TestDigest is UnitTest
   let _name: String
-  let d: (Digest | None)
+  var d: (Digest | None) = None
   let inputs: Array[String] val
   let assert: String
   
@@ -116,16 +116,14 @@ class iso _TestDigest is UnitTest
       | "sha256" => Digest.sha256()
       | "sha384" => Digest.sha384()
       | "sha512" => Digest.sha512()
-      end
-      ifdef "openssl_1.1.x" then
-        match name'.lower()
-        | "shake128" => Digest.shake128()
-        | "shake256" => Digest.shake256()
-        end
+      | "shake128" => ifdef "openssl_1.1.x" then Digest.shake128() end
+      | "shake256" => ifdef "openssl_1.1.x" then Digest.shake256() end
+      else
+        None
       end
       inputs = inputs'
       assert = assert'
-    
+
   fun name(): String => _name
 
   fun ref apply(h: TestHelper)? =>
