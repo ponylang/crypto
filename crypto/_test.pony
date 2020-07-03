@@ -106,37 +106,69 @@ class iso _TestDigest is UnitTest
   fun name(): String => "crypto/Digest"
 
   fun apply(h: TestHelper) ? =>
-    let d = Digest.md4()
-    d.append("message1")?
-    d.append("message2")?
+    let md4 = Digest.md4()
+    md4.append("message1")?
+    md4.append("message2")?
     h.assert_eq[String](
       "6f299e11a64b5983b932ae9a682f0379",
-      ToHexString(d.final()))
+      ToHexString(md4.final()))
 
-    let d' = Digest.md5()
-    d'.append("message1")?
-    d'.append("message2")?
+    let md5 = Digest.md5()
+    md5.append("message1")?
+    md5.append("message2")?
     h.assert_eq[String](
       "94af09c09bb9bb7b5c94fec6e6121482",
-      ToHexString(d'.final()))
+      ToHexString(md5.final()))
 
-    let d'' = Digest.sha512()
-    d''.append("test")?
+    let sha1 = Digest.sha1()
+    sha1.append("message1")?
+    sha1.append("message2")?
     h.assert_eq[String](
-      "ee26b0dd4af7e749aa1a8ee3c10ae9923f618980772e473f8819a5d4940e0db2" +
-      "7ac185f8a0e1d5f84f88bc887fd67b143732c304cc5fa9ad8e6f57f50028a8ff",
-      ToHexString(d''.final()))
+      "942682e2e49f37b4b224fc1aec1a53a25967e7e0",
+      ToHexString(sha1.final()))
+
+    let sha224 = Digest.sha224()
+    sha224.append("message1")?
+    sha224.append("message2")?
+    h.assert_eq[String](
+      "fbba013f116e8b09b044b2a785ed7fb6a65ce672d724c1fb20500d45",
+      ToHexString(sha224.final()))
+
+    let sha256 = Digest.sha256()
+    sha256.append("message1")?
+    sha256.append("message2")?
+    h.assert_eq[String](
+      "68d9b867db4bde630f3c96270b2320a31a72aafbc39997eb2bc9cf2da21e5213",
+      ToHexString(sha256.final()))
+
+    let sha384 = Digest.sha384()
+    sha384.append("message1")?
+    sha384.append("message2")?
+    h.assert_eq[String](
+      "7736dd67494a7072bf255852bd327406b398cb0b16cb400fcd3fcfb6827d74ab"+
+      "9b14673d50515b6273ef15543325f8d3",
+      ToHexString(sha384.final()))
+      
+    let sha512 = Digest.sha512()
+    sha512.append("message1")?
+    sha512.append("message2")?
+    h.assert_eq[String](
+      "3511f4825021a90cd55d37db5c3250e6bbcffc9a0d56d88b4e2878ac5b094692"+
+      "cd945c6a77006272322f911c9be31fa970043daa4b61cee607566cbfa2c69b09",
+      ToHexString(sha512.final()))
 
     ifdef "openssl_1.1.x" then
-      let s = Digest.shake128()
-      s.append("test")?
+      let shake128 = Digest.shake128()
+      shake128.append("message1")?
+      shake128.append("message2")?
       h.assert_eq[String](
-      "d3b0aa9cd8b7255622cebc631e867d40",
-      ToHexString(s.final()))
+      "0d11671f23b6356bdf4ba8dcae37419d",
+      ToHexString(shake128.final()))
 
-      let s' = Digest.shake256()
-      s'.append("test")?
+      let shake256 = Digest.shake256()
+      shake256.append("message1")?
+      shake256.append("message2")?
       h.assert_eq[String](
-      "b54ff7255705a71ee2925e4a3e30e41aed489a579d5595e0df13e32e1e4dd202",
-      ToHexString(s'.final()))
+      "80e2bbb14639e3b1fc1df80b47b67fb518b0ed26a1caddfa10d68f7992c33820",
+      ToHexString(shake256.final()))
     end
