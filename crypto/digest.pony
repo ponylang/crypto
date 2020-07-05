@@ -13,6 +13,18 @@ class Digest
   let _ctx: Pointer[_EVPCTX]
   var _hash: (Array[U8] val | None) = None
 
+  new mdc2() =>
+    """
+    Use the MDC2 algorithm to calculate the hash.
+    """
+    _digest_size = 16
+    ifdef "openssl_1.1.x" then
+      _ctx = @EVP_MD_CTX_new[Pointer[_EVPCTX]]()
+    else
+      _ctx = @EVP_MD_CTX_create[Pointer[_EVPCTX]]()
+    end
+    @EVP_DigestInit_ex[None](_ctx, @EVP_mdc2[Pointer[_EVPMD]](), USize(0))
+
   new md4() =>
     """
     Use the MD4 algorithm to calculate the hash.
@@ -36,18 +48,6 @@ class Digest
       _ctx = @EVP_MD_CTX_create[Pointer[_EVPCTX]]()
     end
     @EVP_DigestInit_ex[None](_ctx, @EVP_md5[Pointer[_EVPMD]](), USize(0))
-
-  new mdc2() =>
-    """
-    Use the MDC2 algorithm to calculate the hash.
-    """
-    _digest_size = 16
-    ifdef "openssl_1.1.x" then
-      _ctx = @EVP_MD_CTX_new[Pointer[_EVPCTX]]()
-    else
-      _ctx = @EVP_MD_CTX_create[Pointer[_EVPCTX]]()
-    end
-    @EVP_DigestInit_ex[None](_ctx, @EVP_mdc2[Pointer[_EVPMD]](), USize(0))
 
   new ripemd160() =>
     """

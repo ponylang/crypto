@@ -6,9 +6,9 @@ actor Main is TestList
 
   fun tag tests(test: PonyTest) =>
     test(_TestConstantTimeCompare)
+    test(_TestMDC2)
     test(_TestMD4)
     test(_TestMD5)
-    test(_TestMDC2)
     test(_TestRIPEMD160)
     test(_TestSHA1)
     test(_TestSHA224)
@@ -37,6 +37,14 @@ class iso _TestConstantTimeCompare is UnitTest
     h.assert_false(ConstantTimeCompare(s1, s6))
     h.assert_false(ConstantTimeCompare(s1, s7))
 
+class iso _TestMDC2 is UnitTest
+  fun name(): String => "crypto/MDC2"
+
+  fun apply(h: TestHelper) =>
+    h.assert_eq[String](
+      "c2dd499827c00a40f3e5cfaa22bd4db4",
+      ToHexString(MDC2("test")))
+
 class iso _TestMD4 is UnitTest
   fun name(): String => "crypto/MD4"
 
@@ -52,14 +60,6 @@ class iso _TestMD5 is UnitTest
     h.assert_eq[String](
       "098f6bcd4621d373cade4e832627b4f6",
       ToHexString(MD5("test")))
-
-class iso _TestMDC2 is UnitTest
-  fun name(): String => "crypto/MDC2"
-
-  fun apply(h: TestHelper) =>
-    h.assert_eq[String](
-      "c2dd499827c00a40f3e5cfaa22bd4db4",
-      ToHexString(MDC2("test")))
 
 class iso _TestRIPEMD160 is UnitTest
   fun name(): String => "crypto/RIPEMD160"
@@ -115,6 +115,13 @@ class iso _TestDigest is UnitTest
   fun name(): String => "crypto/Digest"
 
   fun apply(h: TestHelper) ? =>
+    let mdc2 = Digest.mdc2()
+    mdc2.append("message1")?
+    mdc2.append("message2")?
+    h.assert_eq[String](
+      "173b55f453c4c809b03a3b6dbc6ec912",
+      ToHexString(mdc2.final()))
+
     let md4 = Digest.md4()
     md4.append("message1")?
     md4.append("message2")?
@@ -128,13 +135,6 @@ class iso _TestDigest is UnitTest
     h.assert_eq[String](
       "94af09c09bb9bb7b5c94fec6e6121482",
       ToHexString(md5.final()))
-
-    let mdc2 = Digest.mdc2()
-    mdc2.append("message1")?
-    mdc2.append("message2")?
-    h.assert_eq[String](
-      "173b55f453c4c809b03a3b6dbc6ec912",
-      ToHexString(mdc2.final()))
 
     let sha1 = Digest.sha1()
     sha1.append("message1")?
