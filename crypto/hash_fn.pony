@@ -35,6 +35,19 @@ primitive MD5 is HashFn
       Array[U8].from_cpointer(digest, size)
     end
 
+primitive MDC2 is HashFn
+  fun tag apply(input: ByteSeq): Array[U8] val =>
+    """
+    Compute the MDC2 message digest conforming to ISO/IEC 10118-2, with DES
+    """
+    recover
+      let size: USize = 16
+      let digest =
+        @pony_alloc[Pointer[U8]](@pony_ctx[Pointer[None] iso](), size)
+      @MDC2[Pointer[U8]](input.cpointer(), input.size(), digest)
+      Array[U8].from_cpointer(digest, size)
+    end
+
 primitive RIPEMD160 is HashFn
   fun tag apply(input: ByteSeq): Array[U8] val =>
     """
