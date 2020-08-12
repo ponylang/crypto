@@ -71,4 +71,4 @@ sudo zypper install libopenssl-devel
 ```
 ### Installing on Windows
 
-Download a prebuilt binary from [https://www.libressl.org/](https://www.libressl.org/).
+Before using this package, you must run `.\make.ps1 libs` in its base directory to download and build LibreSSL for Windows. You will need CMake and7Zip (`7z.exe`) in your PATH; and Visual Studio 2019 (or the Visual C++ Build Tools 2019).
