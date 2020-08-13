@@ -11,6 +11,7 @@ All notable changes to this library will be documented in this file. This projec
 
 - Added Shake128/256 Digest support ([PR #28](https://github.com/ponylang/crypto/pull/28))
 - Added MD4 digest ([PR #27](https://github.com/ponylang/crypto/pull/27))
+- Made Windows installation easier (https://github.com/ponylang/crypto/commit/bed88fa975ec23153e926551c020c2241763f114)
 
 ### Changed
 
@@ -26,4 +27,3 @@ All notable changes to this library will be documented in this file. This projec
 ### Added
 
 - Initial version
-
