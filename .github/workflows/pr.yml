@@ -23,11 +23,11 @@ jobs:
       - name: Test
         run: make test config=debug ssl=0.9.0
 
-  test-openssl-1_1_x-vs-ponyc-release:
-    name: openssl 1.1.x with most recent ponyc release
+  test-openssl-1_1_1g-vs-ponyc-release:
+    name: openssl 1.1.1g with most recent ponyc release
     runs-on: ubuntu-latest
     container:
-      image: ponylang/shared-docker-ci-x86-64-unknown-linux-builder-with-openssl_1.1.x:release
+      image: ponylang/shared-docker-ci-x86-64-unknown-linux-builder-with-openssl_1.1.1g:release
     steps:
       - uses: actions/checkout@v1
       - name: Test
