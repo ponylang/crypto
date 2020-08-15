@@ -5,11 +5,11 @@ on:
     - cron: "0 3 * * *"
 
 jobs:
-  test-libressl-vs-ponyc-latest:
-    name: libressl with ponyc master
+  test-libressl-3_1_2-vs-ponyc-latest:
+    name: libressl 3.1.2 with ponyc master
     runs-on: ubuntu-latest
     container:
-      image: ponylang/shared-docker-ci-x86-64-unknown-linux-builder-with-libressl:latest
+      image: ponylang/shared-docker-ci-x86-64-unknown-linux-builder-with-libressl-3.1.2:latest
     steps:
       - uses: actions/checkout@v1
       - name: Test

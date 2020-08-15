@@ -13,11 +13,11 @@ jobs:
       - name: Verify CHANGELOG
         run: changelog-tool verify
 
-  test-libressl-vs-ponyc-release:
-    name: libressl with most recent ponyc release
+  test-libressl-3_1_2-vs-ponyc-release:
+    name: libressl 3.1.2 with most recent ponyc release
     runs-on: ubuntu-latest
     container:
-      image: ponylang/shared-docker-ci-x86-64-unknown-linux-builder-with-libressl:release
+      image: ponylang/shared-docker-ci-x86-64-unknown-linux-builder-with-libressl-3.1.2:release
     steps:
       - uses: actions/checkout@v1
       - name: Test
