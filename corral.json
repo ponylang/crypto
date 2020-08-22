@@ -1,4 +1,9 @@
 {
   "deps": [],
-  "info": {}
+  "info": {},
+  "scripts": {
+    "windows": {
+      "post_fetch_or_update": "PowerShell.exe -File make.ps1 -Config release -Command libs"
+    }
+  }
 }
