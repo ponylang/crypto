@@ -9,6 +9,7 @@ All notable changes to this library will be documented in this file. This projec
 
 ### Added
 
+- Build Windows libs upon fetch or update ([PR #45](https://github.com/ponylang/crypto/pull/45))
 
 ### Changed
 
