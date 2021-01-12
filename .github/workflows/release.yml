@@ -14,7 +14,7 @@ jobs:
       - name: Generate documentation and upload
         uses: ponylang/main-actor-documentation-action@0.1.0
         with:
-          library_name: "crypto-docs"
+          library_name: "crypto"
           docs_build_dir: "build/crypto-docs"
           git_user_name: "Ponylang Main Bot"
           git_user_email: "ponylang.main@gmail.com"
