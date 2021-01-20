@@ -1,8 +1,8 @@
-name: vs-ponyc-latest
+name: ponyc update breakage test
 
 on:
-  schedule:
-    - cron: "0 3 * * *"
+  repository_dispatch:
+    types: [shared-docker-linux-builders-updated]
 
 jobs:
   test-libressl-3_1_2-vs-ponyc-latest:
