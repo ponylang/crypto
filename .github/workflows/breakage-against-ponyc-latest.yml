@@ -6,7 +6,7 @@ on:
 
 jobs:
   test-libressl-3_1_2-vs-ponyc-latest:
-    name: libressl 3.1.2 with ponyc master
+    name: libressl 3.1.2 with ponyc main
     runs-on: ubuntu-latest
     container:
       image: ponylang/shared-docker-ci-x86-64-unknown-linux-builder-with-libressl-3.1.2:latest
@@ -16,7 +16,7 @@ jobs:
         run: make test config=debug ssl=0.9.0
 
   test-openssl-1_1_1g-vs-ponyc-latest:
-    name: openssl 1.1.1g with ponyc master
+    name: openssl 1.1.1g with ponyc main
     runs-on: ubuntu-latest
     container:
       image: ponylang/shared-docker-ci-x86-64-unknown-linux-builder-with-openssl_1.1.1g:latest
