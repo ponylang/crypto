@@ -1,6 +1,16 @@
 {
+  "packages": [
+    "crypto"
+  ],
   "deps": [],
-  "info": {},
+  "info": {
+    "description": "Library of common cryptographic algorithms and functions",
+    "homepage": "https://github.com/ponylang/crypto",
+    "license": "BSD-2-Clause",
+    "documentation_url": "https://ponylang.github.io/crypto/",
+    "version": "1.1.0",
+    "name": "crypto"
+  },
   "scripts": {
     "windows": {
       "post_fetch_or_update": "PowerShell.exe -File make.ps1 -Config release -Command libs"
