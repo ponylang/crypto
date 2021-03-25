@@ -75,9 +75,7 @@ You should pass `--define openssl_0.9.0` to Ponyc when using this package on Win
 
 ## Examples
 
-### Hash functions
-
-Producing a hash from a single fixed-length byte array
+#### Producing a hash from a single fixed-length byte array
 
 ```pony
 // SHA256
@@ -93,9 +91,7 @@ let sha1hash: Array[U8] val = SHA1("Hello World")
 env.out.print("SHA1: " + ToHexString(sha1hash))
 ```
 
-### Digest
-
-Producing a hash from chunks of input
+#### Producing a hash from chunks of input
 
 ```pony
 let sha256digest: Digest = Digest.sha256()
