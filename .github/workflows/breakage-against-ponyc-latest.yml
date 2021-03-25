@@ -5,11 +5,11 @@ on:
     types: [shared-docker-linux-builders-updated]
 
 jobs:
-  test-libressl-3_1_2-vs-ponyc-latest:
-    name: libressl 3.1.2 with ponyc main
+  test-libressl-3_2_5-vs-ponyc-latest:
+    name: libressl 3.2.5 with ponyc main
     runs-on: ubuntu-latest
     container:
-      image: ponylang/shared-docker-ci-x86-64-unknown-linux-builder-with-libressl-3.1.2:latest
+      image: ponylang/shared-docker-ci-x86-64-unknown-linux-builder-with-libressl-3.2.5:latest
     steps:
       - uses: actions/checkout@v1
       - name: Test
