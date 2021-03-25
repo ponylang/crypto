@@ -73,6 +73,10 @@ If you use [Corral](https://github.com/ponylang/corral) to include this package 
 
 You should pass `--define openssl_0.9.0` to Ponyc when using this package on Windows.
 
+## Examples
+
+Examples can be found within the [examples](./examples) folder in this repository
+
 ## API Documentation
 
 [https://ponylang.github.io/crypto/](https://ponylang.github.io/crypto/)
