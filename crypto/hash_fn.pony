@@ -1,6 +1,15 @@
 use "path:/usr/local/opt/libressl/lib" if osx
 use "lib:crypto"
 
+use @MD4[Pointer[U8]](d: Pointer[U8] tag, n: USize, md: Pointer[U8])
+use @MD5[Pointer[U8]](d: Pointer[U8] tag, n: USize, md: Pointer[U8])
+use @RIPEMD160[Pointer[U8]](d: Pointer[U8] tag, n: USize, md: Pointer[U8])
+use @SHA1[Pointer[U8]](d: Pointer[U8] tag, n: USize, md: Pointer[U8])
+use @SHA224[Pointer[U8]](d: Pointer[U8] tag, n: USize, md: Pointer[U8])
+use @SHA256[Pointer[U8]](d: Pointer[U8] tag, n: USize, md: Pointer[U8])
+use @SHA384[Pointer[U8]](d: Pointer[U8] tag, n: USize, md: Pointer[U8])
+use @SHA512[Pointer[U8]](d: Pointer[U8] tag, n: USize, md: Pointer[U8])
+
 use "format"
 
 interface HashFn
@@ -16,9 +25,8 @@ primitive MD4 is HashFn
     """
     recover
       let size: USize = 16
-      let digest =
-        @pony_alloc[Pointer[U8]](@pony_ctx[Pointer[None] iso](), size)
-      @MD4[Pointer[U8]](input.cpointer(), input.size(), digest)
+      let digest = @pony_alloc(@pony_ctx(), size)
+      @MD4(input.cpointer(), input.size(), digest)
       Array[U8].from_cpointer(digest, size)
     end
 
@@ -29,9 +37,8 @@ primitive MD5 is HashFn
     """
     recover
       let size: USize = 16
-      let digest =
-        @pony_alloc[Pointer[U8]](@pony_ctx[Pointer[None] iso](), size)
-      @MD5[Pointer[U8]](input.cpointer(), input.size(), digest)
+      let digest = @pony_alloc(@pony_ctx(), size)
+      @MD5(input.cpointer(), input.size(), digest)
       Array[U8].from_cpointer(digest, size)
     end
 
@@ -42,9 +49,8 @@ primitive RIPEMD160 is HashFn
     """
     recover
       let size: USize = 20
-      let digest =
-        @pony_alloc[Pointer[U8]](@pony_ctx[Pointer[None] iso](), size)
-      @RIPEMD160[Pointer[U8]](input.cpointer(), input.size(), digest)
+      let digest = @pony_alloc(@pony_ctx(), size)
+      @RIPEMD160(input.cpointer(), input.size(), digest)
       Array[U8].from_cpointer(digest, size)
     end
 
@@ -56,9 +62,8 @@ primitive SHA1 is HashFn
     """
     recover
       let size: USize = 20
-      let digest =
-        @pony_alloc[Pointer[U8]](@pony_ctx[Pointer[None] iso](), size)
-      @SHA1[Pointer[U8]](input.cpointer(), input.size(), digest)
+      let digest = @pony_alloc(@pony_ctx(), size)
+      @SHA1(input.cpointer(), input.size(), digest)
       Array[U8].from_cpointer(digest, size)
     end
 
@@ -70,9 +75,8 @@ primitive SHA224 is HashFn
     """
     recover
       let size: USize = 28
-      let digest =
-        @pony_alloc[Pointer[U8]](@pony_ctx[Pointer[None] iso](), size)
-      @SHA224[Pointer[U8]](input.cpointer(), input.size(), digest)
+      let digest = @pony_alloc(@pony_ctx(), size)
+      @SHA224(input.cpointer(), input.size(), digest)
       Array[U8].from_cpointer(digest, size)
     end
 
@@ -84,9 +88,8 @@ primitive SHA256 is HashFn
     """
     recover
       let size: USize = 32
-      let digest =
-        @pony_alloc[Pointer[U8]](@pony_ctx[Pointer[None] iso](), size)
-      @SHA256[Pointer[U8]](input.cpointer(), input.size(), digest)
+      let digest = @pony_alloc(@pony_ctx(), size)
+      @SHA256(input.cpointer(), input.size(), digest)
       Array[U8].from_cpointer(digest, size)
     end
 
@@ -98,9 +101,8 @@ primitive SHA384 is HashFn
     """
     recover
       let size: USize = 48
-      let digest =
-        @pony_alloc[Pointer[U8]](@pony_ctx[Pointer[None] iso](), size)
-      @SHA384[Pointer[U8]](input.cpointer(), input.size(), digest)
+      let digest = @pony_alloc(@pony_ctx(), size)
+      @SHA384(input.cpointer(), input.size(), digest)
       Array[U8].from_cpointer(digest, size)
     end
 
@@ -112,9 +114,8 @@ primitive SHA512 is HashFn
     """
     recover
       let size: USize = 64
-      let digest =
-        @pony_alloc[Pointer[U8]](@pony_ctx[Pointer[None] iso](), size)
-      @SHA512[Pointer[U8]](input.cpointer(), input.size(), digest)
+      let digest = @pony_alloc(@pony_ctx(), size)
+      @SHA512(input.cpointer(), input.size(), digest)
       Array[U8].from_cpointer(digest, size)
     end
 
