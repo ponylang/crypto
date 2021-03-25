@@ -73,6 +73,44 @@ If you use [Corral](https://github.com/ponylang/corral) to include this package 
 
 You should pass `--define openssl_0.9.0` to Ponyc when using this package on Windows.
 
+## Examples
+
+### Hash functions
+
+Producing a hash from a single fixed-length byte array
+
+```pony
+// SHA256
+let sha256hash: Array[U8] val = SHA256("Hello World")
+env.out.print("SHA256: " + ToHexString(sha256hash))
+
+// MD5
+let md5hash: Array[U8] val = MD5("Hello World")
+env.out.print("MD5: " + ToHexString(md5hash))
+
+// SHA1
+let sha1hash: Array[U8] val = SHA1("Hello World")
+env.out.print("SHA1: " + ToHexString(sha1hash))
+```
+
+### Digest
+
+Producing a hash from chunks of input
+
+```pony
+let sha256digest: Digest = Digest.sha256()
+try
+  sha256digest.append("Hello ")?
+  sha256digest.append("World")?
+  let hash: Array[U8] val = sha256digest.final()
+  env.out.print("SHA256: " + ToHexString(hash))
+else
+  env.out.print("Error computing hash")
+end
+```
+
+Example can be found within the [examples](./examples) folder in this repository
+
 ## API Documentation
 
 [https://ponylang.github.io/crypto/](https://ponylang.github.io/crypto/)
