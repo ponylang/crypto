@@ -1,6 +1,25 @@
 use "path:/usr/local/opt/libressl/lib" if osx
 use "lib:crypto"
 
+use @EVP_MD_CTX_new[Pointer[_EVPCTX]]() if "openssl_1.1.x"
+use @EVP_MD_CTX_create[Pointer[_EVPCTX]]() if not "openssl_1.1.x"
+use @EVP_DigestInit_ex[I32](ctx: Pointer[_EVPCTX] tag, t: Pointer[_EVPMD], impl: USize)
+use @EVP_DigestUpdate[I32](ctx: Pointer[_EVPCTX] tag, d: Pointer[U8] tag, cnt: USize)
+use @EVP_DigestFinal_ex[I32](ctx: Pointer[_EVPCTX] tag, md: Pointer[U8] tag, s: Pointer[USize])
+use @EVP_MD_CTX_free[None](ctx: Pointer[_EVPCTX]) if "openssl_1.1.x"
+use @EVP_MD_CTX_destroy[None](ctx: Pointer[_EVPCTX]) if not "openssl_1.1.x"
+
+use @EVP_md4[Pointer[_EVPMD]]()
+use @EVP_md5[Pointer[_EVPMD]]()
+use @EVP_ripemd160[Pointer[_EVPMD]]()
+use @EVP_sha1[Pointer[_EVPMD]]()
+use @EVP_sha224[Pointer[_EVPMD]]()
+use @EVP_sha256[Pointer[_EVPMD]]()
+use @EVP_sha384[Pointer[_EVPMD]]()
+use @EVP_sha512[Pointer[_EVPMD]]()
+use @EVP_shake128[Pointer[_EVPMD]]()
+use @EVP_shake256[Pointer[_EVPMD]]()
+
 primitive _EVPMD
 primitive _EVPCTX
 
@@ -19,11 +38,11 @@ class Digest
     """
     _digest_size = 16
     ifdef "openssl_1.1.x" then
-      _ctx = @EVP_MD_CTX_new[Pointer[_EVPCTX]]()
+      _ctx = @EVP_MD_CTX_new()
     else
-      _ctx = @EVP_MD_CTX_create[Pointer[_EVPCTX]]()
+      _ctx = @EVP_MD_CTX_create()
     end
-    @EVP_DigestInit_ex[None](_ctx, @EVP_md4[Pointer[_EVPMD]](), USize(0))
+    @EVP_DigestInit_ex(_ctx, @EVP_md4(), USize(0))
     
   new md5() =>
     """
@@ -31,11 +50,11 @@ class Digest
     """
     _digest_size = 16
     ifdef "openssl_1.1.x" then
-      _ctx = @EVP_MD_CTX_new[Pointer[_EVPCTX]]()
+      _ctx = @EVP_MD_CTX_new()
     else
-      _ctx = @EVP_MD_CTX_create[Pointer[_EVPCTX]]()
+      _ctx = @EVP_MD_CTX_create()
     end
-    @EVP_DigestInit_ex[None](_ctx, @EVP_md5[Pointer[_EVPMD]](), USize(0))
+    @EVP_DigestInit_ex(_ctx, @EVP_md5(), USize(0))
 
   new ripemd160() =>
     """
@@ -43,11 +62,11 @@ class Digest
     """
     _digest_size = 20
     ifdef "openssl_1.1.x" then
-      _ctx = @EVP_MD_CTX_new[Pointer[_EVPCTX]]()
+      _ctx = @EVP_MD_CTX_new()
     else
-      _ctx = @EVP_MD_CTX_create[Pointer[_EVPCTX]]()
+      _ctx = @EVP_MD_CTX_create()
     end
-    @EVP_DigestInit_ex[None](_ctx, @EVP_ripemd160[Pointer[_EVPMD]](), USize(0))
+    @EVP_DigestInit_ex(_ctx, @EVP_ripemd160(), USize(0))
 
   new sha1() =>
     """
@@ -55,11 +74,11 @@ class Digest
     """
     _digest_size = 20
     ifdef "openssl_1.1.x" then
-      _ctx = @EVP_MD_CTX_new[Pointer[_EVPCTX]]()
+      _ctx = @EVP_MD_CTX_new()
     else
-      _ctx = @EVP_MD_CTX_create[Pointer[_EVPCTX]]()
+      _ctx = @EVP_MD_CTX_create()
     end
-    @EVP_DigestInit_ex[None](_ctx, @EVP_sha1[Pointer[_EVPMD]](), USize(0))
+    @EVP_DigestInit_ex(_ctx, @EVP_sha1(), USize(0))
 
   new sha224() =>
     """
@@ -67,11 +86,11 @@ class Digest
     """
     _digest_size = 28
     ifdef "openssl_1.1.x" then
-      _ctx = @EVP_MD_CTX_new[Pointer[_EVPCTX]]()
+      _ctx = @EVP_MD_CTX_new()
     else
-      _ctx = @EVP_MD_CTX_create[Pointer[_EVPCTX]]()
+      _ctx = @EVP_MD_CTX_create()
     end
-    @EVP_DigestInit_ex[None](_ctx, @EVP_sha224[Pointer[_EVPMD]](), USize(0))
+    @EVP_DigestInit_ex(_ctx, @EVP_sha224(), USize(0))
 
   new sha256() =>
     """
@@ -79,11 +98,11 @@ class Digest
     """
     _digest_size = 32
     ifdef "openssl_1.1.x" then
-      _ctx = @EVP_MD_CTX_new[Pointer[_EVPCTX]]()
+      _ctx = @EVP_MD_CTX_new()
     else
-      _ctx = @EVP_MD_CTX_create[Pointer[_EVPCTX]]()
+      _ctx = @EVP_MD_CTX_create()
     end
-    @EVP_DigestInit_ex[None](_ctx, @EVP_sha256[Pointer[_EVPMD]](), USize(0))
+    @EVP_DigestInit_ex(_ctx, @EVP_sha256(), USize(0))
 
   new sha384() =>
     """
@@ -91,11 +110,11 @@ class Digest
     """
     _digest_size = 48
     ifdef "openssl_1.1.x" then
-      _ctx = @EVP_MD_CTX_new[Pointer[_EVPCTX]]()
+      _ctx = @EVP_MD_CTX_new()
     else
-      _ctx = @EVP_MD_CTX_create[Pointer[_EVPCTX]]()
+      _ctx = @EVP_MD_CTX_create()
     end
-    @EVP_DigestInit_ex[None](_ctx, @EVP_sha384[Pointer[_EVPMD]](), USize(0))
+    @EVP_DigestInit_ex(_ctx, @EVP_sha384(), USize(0))
 
   new sha512() =>
     """
@@ -103,11 +122,11 @@ class Digest
     """
     _digest_size = 64
     ifdef "openssl_1.1.x" then
-      _ctx = @EVP_MD_CTX_new[Pointer[_EVPCTX]]()
+      _ctx = @EVP_MD_CTX_new()
     else
-      _ctx = @EVP_MD_CTX_create[Pointer[_EVPCTX]]()
+      _ctx = @EVP_MD_CTX_create()
     end
-    @EVP_DigestInit_ex[None](_ctx, @EVP_sha512[Pointer[_EVPMD]](), USize(0))
+    @EVP_DigestInit_ex(_ctx, @EVP_sha512(), USize(0))
 
   new shake128() =>
     """
@@ -115,8 +134,8 @@ class Digest
     """
     _digest_size = 16
     ifdef "openssl_1.1.x" then
-      _ctx = @EVP_MD_CTX_new[Pointer[_EVPCTX]]()
-      @EVP_DigestInit_ex[None](_ctx, @EVP_shake128[Pointer[_EVPMD]](), USize(0))
+      _ctx = @EVP_MD_CTX_new()
+      @EVP_DigestInit_ex(_ctx, @EVP_shake128(), USize(0))
     else
       compile_error "openssl_0.9.x dose not support shake128"
     end
@@ -127,8 +146,8 @@ class Digest
     """
     _digest_size = 32
     ifdef "openssl_1.1.x" then
-      _ctx = @EVP_MD_CTX_new[Pointer[_EVPCTX]]()
-      @EVP_DigestInit_ex[None](_ctx, @EVP_shake256[Pointer[_EVPMD]](), USize(0))
+      _ctx = @EVP_MD_CTX_new()
+      @EVP_DigestInit_ex(_ctx, @EVP_shake256(), USize(0))
     else
       compile_error "openssl_0.9.x dose not support shake256"
     end
@@ -139,7 +158,7 @@ class Digest
     called.
     """
     if _hash isnt None then error end
-    @EVP_DigestUpdate[None](_ctx, input.cpointer(), input.size())
+    @EVP_DigestUpdate(_ctx, input.cpointer(), input.size())
 
   fun ref final(): Array[U8] val =>
     """
@@ -151,11 +170,11 @@ class Digest
       let size = _digest_size
       let digest =
         recover String.from_cpointer(
-          @pony_alloc[Pointer[U8]](@pony_ctx[Pointer[None] iso](), size), size)
+          @pony_alloc(@pony_ctx(), size), size)
         end
-      @EVP_DigestFinal_ex[None](_ctx, digest.cpointer(), Pointer[USize])
+      @EVP_DigestFinal_ex(_ctx, digest.cpointer(), Pointer[USize])
       ifdef "openssl_1.1.x" then
-        @EVP_MD_CTX_free[None](_ctx)
+        @EVP_MD_CTX_free(_ctx)
       else
         @EVP_MD_CTX_destroy[None](_ctx)
       end
