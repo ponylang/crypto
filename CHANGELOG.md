@@ -6,6 +6,7 @@ All notable changes to this library will be documented in this file. This projec
 
 ### Fixed
 
+- Free the underlying digest context on OpenSSL 0.9.0 ([PR #55](https://github.com/ponylang/crypto/pull/55))
 
 ### Added
 
