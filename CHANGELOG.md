@@ -2,14 +2,11 @@
 
 All notable changes to this library will be documented in this file. This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a CHANGELOG](http://keepachangelog.com/).
 
-## [unreleased] - unreleased
+## [1.1.2] - 2021-03-26
 
 ### Fixed
 
 - Free the underlying digest context on OpenSSL 0.9.0 ([PR #55](https://github.com/ponylang/crypto/pull/55))
-
-### Added
-
 
 ### Changed
 
