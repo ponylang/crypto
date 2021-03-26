@@ -13,6 +13,7 @@ All notable changes to this library will be documented in this file. This projec
 
 ### Changed
 
+- Declare all FFI functions ([PR #56](https://github.com/ponylang/crypto/pull/56))
 
 ## [1.1.1] - 2021-02-08
 
