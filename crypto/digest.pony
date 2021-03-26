@@ -157,7 +157,7 @@ class Digest
       ifdef "openssl_1.1.x" then
         @EVP_MD_CTX_free[None](_ctx)
       else
-        @EVP_MD_CTX_cleanup[None](_ctx)
+        @EVP_MD_CTX_destroy[None](_ctx)
       end
       let h = (consume digest).array()
       _hash = h
