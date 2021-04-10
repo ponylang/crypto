@@ -12,6 +12,7 @@ All notable changes to this library will be documented in this file. This projec
 
 ### Changed
 
+- Remove explicit return type from FFI calls ([PR #57](https://github.com/ponylang/crypto/pull/57))
 
 ## [1.1.2] - 2021-03-26
 
