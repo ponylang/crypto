@@ -5,11 +5,11 @@ on:
     types: [shared-docker-linux-builders-updated]
 
 jobs:
-  test-libressl-3_2_5-vs-ponyc-latest:
-    name: libressl 3.2.5 with ponyc main
+  test-libressl-3_4_1-vs-ponyc-latest:
+    name: libressl 3.4.1 with ponyc main
     runs-on: ubuntu-latest
     container:
-      image: ponylang/shared-docker-ci-x86-64-unknown-linux-builder-with-libressl-3.2.5:latest
+      image: ponylang/shared-docker-ci-x86-64-unknown-linux-builder-with-libressl-3.4.1:latest
     steps:
       - uses: actions/checkout@v1
       - name: Test
@@ -26,11 +26,11 @@ jobs:
           topic: ${{ github.repository }} scheduled job failure
           content: ${{ github.server_url}}/${{ github.repository }}/actions/runs/${{ github.run_id }} failed.
 
-  test-openssl-1_1_1k-vs-ponyc-latest:
-    name: openssl 1.1.1k with ponyc main
+  test-openssl-1_1_1l-vs-ponyc-latest:
+    name: openssl 1.1.1l with ponyc main
     runs-on: ubuntu-latest
     container:
-      image: ponylang/shared-docker-ci-x86-64-unknown-linux-builder-with-openssl_1.1.1k:latest
+      image: ponylang/shared-docker-ci-x86-64-unknown-linux-builder-with-openssl_1.1.1l:latest
     steps:
       - uses: actions/checkout@v1
       - name: Test
