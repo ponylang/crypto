@@ -9,6 +9,7 @@ All notable changes to this library will be documented in this file. This projec
 
 ### Added
 
+- Support for using ponyup on Windows ([PR #66](https://github.com/ponylang/crypto/pull/66))
 
 ### Changed
 
