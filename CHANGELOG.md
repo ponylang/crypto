@@ -2,17 +2,11 @@
 
 All notable changes to this library will be documented in this file. This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a CHANGELOG](http://keepachangelog.com/).
 
-## [unreleased] - unreleased
-
-### Fixed
-
+## [1.1.4] - 2022-02-10
 
 ### Added
 
 - Support for using ponyup on Windows ([PR #66](https://github.com/ponylang/crypto/pull/66))
-
-### Changed
-
 
 ## [1.1.3] - 2021-04-10
 
