@@ -1,5 +1,6 @@
 use "path:/usr/local/opt/libressl/lib" if osx
 use "lib:crypto"
+use "lib:bcrypt" if windows
 
 use @EVP_MD_CTX_new[Pointer[_EVPCTX]]() if "openssl_1.1.x"
 use @EVP_MD_CTX_create[Pointer[_EVPCTX]]() if not "openssl_1.1.x"
@@ -43,7 +44,7 @@ class Digest
       _ctx = @EVP_MD_CTX_create()
     end
     @EVP_DigestInit_ex(_ctx, @EVP_md4(), USize(0))
-    
+
   new md5() =>
     """
     Use the MD5 algorithm to calculate the hash.
