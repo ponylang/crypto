@@ -7,6 +7,7 @@ All notable changes to this library will be documented in this file. This projec
 ### Fixed
 
 - Update to address PonyTest package being renamed ([PR #67](https://github.com/ponylang/crypto/pull/67))
+- Updates for libs build on Windows ([PR #68](https://github.com/ponylang/crypto/pull/68))
 
 ### Added
 
