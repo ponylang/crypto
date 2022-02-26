@@ -145,7 +145,7 @@ function BuildTest
 
 function BuildLibs
 {
-  $libreSsl = "libressl-3.2.5"
+  $libreSsl = "libressl-3.5.0"
 
   if (-not (Test-Path "$rootDir/crypto.lib"))
   {
@@ -177,7 +177,7 @@ function BuildLibs
     }
 
     # copy to the root dir (i.e. PONYPATH) for linking
-    Copy-Item -Force -Path "$libsDir/lib/crypto-46.lib" -Destination "$rootDir/crypto.lib"
+    Copy-Item -Force -Path "$libsDir/lib/crypto-49.lib" -Destination "$rootDir/crypto.lib"
   }
 }
 
