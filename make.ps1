@@ -169,7 +169,7 @@ function BuildLibs
     {
       Push-Location $libreSslSrc
       (Get-Content "$libreSslSrc\CMakeLists.txt").replace('add_definitions(-Dinline=__inline)', "add_definitions(-Dinline=__inline)`nadd_definitions(-DPATH_MAX=255)") | Set-Content "$libreSslSrc\CMakeLists.txt"
-      cmake.exe $libreSslSrc -G "Visual Studio 16 2019" -Thost=x64 -A x64 -DCMAKE_INSTALL_PREFIX="$libsDir" -DCMAKE_BUILD_TYPE="Release"
+      cmake.exe $libreSslSrc -Thost=x64 -A x64 -DCMAKE_INSTALL_PREFIX="$libsDir" -DCMAKE_BUILD_TYPE="Release"
       if ($LastExitCode -ne 0) { Pop-Location; throw "Error configuring $libreSsl" }
       cmake.exe --build . --target install --config Release
       if ($LastExitCode -ne 0) { Pop-Location; throw "Error building $libreSsl" }
