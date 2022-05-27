@@ -2,17 +2,11 @@
 
 All notable changes to this library will be documented in this file. This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a CHANGELOG](http://keepachangelog.com/).
 
-## [unreleased] - unreleased
-
-### Fixed
-
+## [1.1.6] - 2022-05-27
 
 ### Added
 
 - Add path to Homebrew's LibreSSL on ARM macOS ([PR #73](https://github.com/ponylang/crypto/pull/73))
-
-### Changed
-
 
 ## [1.1.5] - 2022-02-26
 
