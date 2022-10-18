@@ -145,7 +145,7 @@ function BuildTest
 
 function BuildLibs
 {
-  $libreSsl = "libressl-3.5.0"
+  $libreSsl = "libressl-3.5.3"
 
   if (-not (Test-Path "$rootDir/crypto.lib"))
   {
