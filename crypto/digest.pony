@@ -11,7 +11,6 @@ use @EVP_DigestFinal_ex[I32](ctx: Pointer[_EVPCTX] tag, md: Pointer[U8] tag, s: 
 use @EVP_MD_CTX_free[None](ctx: Pointer[_EVPCTX]) if "openssl_1.1.x"
 use @EVP_MD_CTX_destroy[None](ctx: Pointer[_EVPCTX]) if not "openssl_1.1.x"
 
-use @EVP_md4[Pointer[_EVPMD]]()
 use @EVP_md5[Pointer[_EVPMD]]()
 use @EVP_ripemd160[Pointer[_EVPMD]]()
 use @EVP_sha1[Pointer[_EVPMD]]()
@@ -33,18 +32,6 @@ class Digest
   let _digest_size: USize
   let _ctx: Pointer[_EVPCTX]
   var _hash: (Array[U8] val | None) = None
-
-  new md4() =>
-    """
-    Use the MD4 algorithm to calculate the hash.
-    """
-    _digest_size = 16
-    ifdef "openssl_1.1.x" then
-      _ctx = @EVP_MD_CTX_new()
-    else
-      _ctx = @EVP_MD_CTX_create()
-    end
-    @EVP_DigestInit_ex(_ctx, @EVP_md4(), USize(0))
 
   new md5() =>
     """
