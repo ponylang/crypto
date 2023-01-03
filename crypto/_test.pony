@@ -150,7 +150,7 @@ class \nodoc\ iso _TestDigest is UnitTest
       "cd945c6a77006272322f911c9be31fa970043daa4b61cee607566cbfa2c69b09",
       ToHexString(sha512.final()))
 
-    ifdef "openssl_1.1.x" then
+    ifdef "openssl_1.1.x" or "openssl_3.0.x" then
       let shake128 = Digest.shake128()
       shake128.append("message1")?
       shake128.append("message2")?
