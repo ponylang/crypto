@@ -12,6 +12,7 @@ All notable changes to this library will be documented in this file. This projec
 
 ### Changed
 
+- Remove `md4` constructor from `Digest` ([PR #78](https://github.com/ponylang/crypto/pull/78))
 
 ## [1.1.6] - 2022-05-27
 
