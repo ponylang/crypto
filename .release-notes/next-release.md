@@ -4,3 +4,7 @@ With the introduction of OpenSSL 3, the OpenSSL developers have moved MD4 to a "
 
 The `md4` constructor has been removed from `Digest`. Note that an alternate method of doing `md4` hashing is still available via the `MD4` primitive.
 
+## Add OpenSSL 3 support
+
+We've added support for using SSL libraries that support the OpenSSL 3 API.
+
