@@ -9,6 +9,7 @@ All notable changes to this library will be documented in this file. This projec
 
 ### Added
 
+- Add OpenSSL 3 support ([PR #80](https://github.com/ponylang/crypto/pull/80))
 
 ### Changed
 
