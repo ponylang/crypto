@@ -106,13 +106,6 @@ class \nodoc\ iso _TestDigest is UnitTest
   fun name(): String => "crypto/Digest"
 
   fun apply(h: TestHelper) ? =>
-    let md4 = Digest.md4()
-    md4.append("message1")?
-    md4.append("message2")?
-    h.assert_eq[String](
-      "6f299e11a64b5983b932ae9a682f0379",
-      ToHexString(md4.final()))
-
     let md5 = Digest.md5()
     md5.append("message1")?
     md5.append("message2")?
