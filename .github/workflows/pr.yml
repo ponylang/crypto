@@ -48,6 +48,16 @@ jobs:
       - name: Test
         run: make test config=debug ssl=1.1.x
 
+  test-openssl-3_0_7-vs-ponyc-release:
+    name: openssl 3.0.7 with most recent ponyc release
+    runs-on: ubuntu-latest
+    container:
+      image: ponylang/shared-docker-ci-x86-64-unknown-linux-builder-with-openssl_3.0.7:release
+    steps:
+      - uses: actions/checkout@v2
+      - name: Test
+        run: make test config=debug ssl=3.0.x
+
   test-windows-vs-ponyc-release:
     name: Windows (LibreSSL) with most recent ponyc release
     runs-on: windows-2022
