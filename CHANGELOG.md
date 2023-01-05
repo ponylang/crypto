@@ -12,6 +12,7 @@ All notable changes to this library will be documented in this file. This projec
 
 ### Changed
 
+- Update to LibreSSL 3.6.1 on Windows ([PR #81](https://github.com/ponylang/crypto/pull/81))
 
 ## [1.2.0] - 2023-01-03
 
