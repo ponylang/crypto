@@ -47,11 +47,11 @@ jobs:
           topic: ${{ github.repository }} scheduled job failure
           content: ${{ github.server_url}}/${{ github.repository }}/actions/runs/${{ github.run_id }} failed.
 
-  test-openssl-3_0_7-vs-ponyc-latest:
-    name: openssl 3.0.7 with ponyc main
+  test-openssl-3-vs-ponyc-latest:
+    name: openssl 3.x with ponyc main
     runs-on: ubuntu-latest
     container:
-      image: ponylang/shared-docker-ci-x86-64-unknown-linux-builder-with-openssl_3.0.7:latest
+      image: ponylang/shared-docker-ci-x86-64-unknown-linux-builder-with-openssl_3.1.0:latest
     steps:
       - uses: actions/checkout@v2
       - name: Test
