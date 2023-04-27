@@ -12,6 +12,7 @@ All notable changes to this library will be documented in this file. This projec
 
 ### Changed
 
+- Change location we download LibreSSL from for Windows Users ([PR #85](https://github.com/ponylang/crypto/pull/85))
 
 ## [1.2.1] - 2023-01-05
 
