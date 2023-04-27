@@ -155,7 +155,7 @@ function BuildLibs
     {
       $libreSslTgz = "$libreSsl.tar.gz"
       $libreSslTgzTgt = Join-Path -Path $libsDir -ChildPath $libreSslTgz
-      if (-not (Test-Path $libreSslTgzTgt)) { Invoke-WebRequest -TimeoutSec 300 -Uri "http://ftp.openbsd.org/pub/OpenBSD/LibreSSL/$libreSslTgz" -OutFile $libreSslTgzTgt }
+      if (-not (Test-Path $libreSslTgzTgt)) { Invoke-WebRequest -TimeoutSec 300 -Uri "http://cdn.openbsd.org/pub/OpenBSD/LibreSSL/$libreSslTgz" -OutFile $libreSslTgzTgt }
       7z.exe x -y $libreSslTgzTgt "-o$libsDir"
       if ($LastExitCode -ne 0) { throw "Error downloading and unzipping $libreSslTgz" }
       7z.exe x -y "$libsDir/$libreSsl.tar" "-o$libsDir"
