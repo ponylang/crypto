@@ -9,7 +9,7 @@ jobs:
     name: libressl 3.x with ponyc main
     runs-on: ubuntu-latest
     container:
-      image: ponylang/shared-docker-ci-x86-64-unknown-linux-builder-with-libressl-3.7.2:latest
+      image: ghcr.io/ponylang/shared-docker-ci-x86-64-unknown-linux-builder-with-libressl-3.7.2:latest
     steps:
       - uses: actions/checkout@v3
       - name: Test
@@ -30,7 +30,7 @@ jobs:
     name: openssl 1.x with ponyc main
     runs-on: ubuntu-latest
     container:
-      image: ponylang/shared-docker-ci-x86-64-unknown-linux-builder-with-openssl_1.1.1t:latest
+      image: ghcr.io/ponylang/shared-docker-ci-x86-64-unknown-linux-builder-with-openssl_1.1.1t:latest
     steps:
       - uses: actions/checkout@v3
       - name: Test
@@ -51,7 +51,7 @@ jobs:
     name: openssl 3.x with ponyc main
     runs-on: ubuntu-latest
     container:
-      image: ponylang/shared-docker-ci-x86-64-unknown-linux-builder-with-openssl_3.1.0:latest
+      image: ghcr.io/ponylang/shared-docker-ci-x86-64-unknown-linux-builder-with-openssl_3.1.0:latest
     steps:
       - uses: actions/checkout@v3
       - name: Test
