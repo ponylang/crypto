@@ -145,7 +145,7 @@ function BuildTest
 
 function BuildLibs
 {
-  $libreSsl = "libressl-3.6.1"
+  $libreSsl = "libressl-3.7.3"
 
   if (-not (Test-Path "$rootDir/crypto.lib"))
   {
@@ -155,11 +155,9 @@ function BuildLibs
     {
       $libreSslTgz = "$libreSsl.tar.gz"
       $libreSslTgzTgt = Join-Path -Path $libsDir -ChildPath $libreSslTgz
-      if (-not (Test-Path $libreSslTgzTgt)) { Invoke-WebRequest -TimeoutSec 300 -Uri "http://cdn.openbsd.org/pub/OpenBSD/LibreSSL/$libreSslTgz" -OutFile $libreSslTgzTgt }
-      7z.exe x -y $libreSslTgzTgt "-o$libsDir"
-      if ($LastExitCode -ne 0) { throw "Error downloading and unzipping $libreSslTgz" }
-      7z.exe x -y "$libsDir/$libreSsl.tar" "-o$libsDir"
-      if ($LastExitCode -ne 0) { throw "Error untarring $buildDir/$libreSsl.tar" }
+      if (-not (Test-Path $libreSslTgzTgt)) { Invoke-WebRequest -TimeoutSec 300 -Uri "https://cdn.openbsd.org/pub/OpenBSD/LibreSSL/$libreSslTgz" -OutFile $libreSslTgzTgt }
+      tar -xvzf "$libreSslTgzTgt" -C "$libsDir"
+      if ($LastExitCode -ne 0) { throw "Error downloading and extracting $libreSslTgz" }
     }
 
     # Write-Output "Building $libreSsl"
