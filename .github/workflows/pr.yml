@@ -46,7 +46,7 @@ jobs:
     name: openssl 1.x with most recent ponyc release
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/ponylang/shared-docker-ci-x86-64-unknown-linux-builder-with-openssl_1.1.1t:release
+      image: ghcr.io/ponylang/shared-docker-ci-x86-64-unknown-linux-builder-with-openssl_1.1.1w:release
     steps:
       - uses: actions/checkout@v3
       - name: Test
