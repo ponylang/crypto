@@ -75,8 +75,8 @@ jobs:
       - name: Test
         run: make test config=debug ssl=3.0.x
 
-  test-windows-vs-ponyc-release:
-    name: Windows (LibreSSL) with most recent ponyc release
+  test-x64-windows-vs-ponyc-release:
+    name: Windows x64 (LibreSSL) with most recent ponyc release
     runs-on: windows-2022
     steps:
       - uses: actions/checkout@v4.1.1
@@ -85,6 +85,21 @@ jobs:
           Invoke-WebRequest https://dl.cloudsmith.io/public/ponylang/releases/raw/versions/latest/ponyc-x86-64-pc-windows-msvc.zip -OutFile C:\ponyc.zip;
           Expand-Archive -Force -Path C:\ponyc.zip -DestinationPath C:\ponyc;
           Invoke-WebRequest https://dl.cloudsmith.io/public/ponylang/releases/raw/versions/latest/corral-x86-64-pc-windows-msvc.zip -OutFile C:\corral.zip;
+          Expand-Archive -Force -Path C:\corral.zip -DestinationPath C:\ponyc;
+          $env:PATH = 'C:\ponyc\bin;' + $env:PATH;
+          .\make.ps1 -Command libs 2>&1;
+          .\make.ps1 -Command test 2>&1;
+
+  test-arm64-windows-vs-ponyc-release:
+    name: Windows Arm64 (LibreSSL) with most recent ponyc release
+    runs-on: windows-11-arm
+    steps:
+      - uses: actions/checkout@v4.1.1
+      - name: Test with most recent ponyc release
+        run: |
+          Invoke-WebRequest https://dl.cloudsmith.io/public/ponylang/releases/raw/versions/latest/ponyc-arm64-pc-windows-msvc.zip -OutFile C:\ponyc.zip;
+          Expand-Archive -Force -Path C:\ponyc.zip -DestinationPath C:\ponyc;
+          Invoke-WebRequest https://dl.cloudsmith.io/public/ponylang/releases/raw/versions/latest/corral-arm64-pc-windows-msvc.zip -OutFile C:\corral.zip;
           Expand-Archive -Force -Path C:\corral.zip -DestinationPath C:\ponyc;
           $env:PATH = 'C:\ponyc\bin;' + $env:PATH;
           .\make.ps1 -Command libs 2>&1;

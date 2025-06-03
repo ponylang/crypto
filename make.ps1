@@ -13,7 +13,7 @@ Param(
 
   [Parameter(HelpMessage="Architecture (native, x64).")]
   [string]
-  $Arch = "x86-64",
+  $Arch = [System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture,
 
   [Parameter(HelpMessage="Directory to install to.")]
   [string]
@@ -28,6 +28,23 @@ $isLibrary = $true
 
 $rootDir = Split-Path $script:MyInvocation.MyCommand.Path
 $srcDir = Join-Path -Path $rootDir -ChildPath $target
+
+
+if ($Arch -ieq 'x64')
+{
+  $Arch = 'x86-64'
+}
+elseif ($Arch -ieq 'arm64')
+{
+  $Arch = 'arm64'
+}
+
+$Thost = "x64"
+if ($Arch -ieq "arm64")
+{
+    # if this is lowercase arm64, then things go boom.
+    $Thost = "ARM64"
+}
 
 if ($Config -ieq "Release")
 {
@@ -97,8 +114,8 @@ function BuildTarget
       $output | ForEach-Object { Write-Host $_ }
       if ($LastExitCode -ne 0) { throw "Error" }
 
-      Write-Host "corral run -- ponyc $configFlag $ponyArgs --cpu `"$Arch`" --output `"$buildDir`" `"$srcDir`""
-      $output = (corral run -- ponyc $configFlag $ponyArgs --cpu "$Arch" --output "$buildDir" "$srcDir")
+      Write-Host "corral run -- ponyc $configFlag $ponyArgs --output `"$buildDir`" `"$srcDir`""
+      $output = (corral run -- ponyc $configFlag $ponyArgs --output "$buildDir" "$srcDir")
       $output | ForEach-Object { Write-Host $_ }
       if ($LastExitCode -ne 0) { throw "Error" }
       break buildFiles
@@ -131,8 +148,8 @@ function BuildTest
       if ($LastExitCode -ne 0) { throw "Error" }
 
       $testDir = Join-Path -Path $srcDir -ChildPath $testPath
-      Write-Host "corral run -- ponyc $configFlag $ponyArgs --cpu `"$Arch`" --output `"$buildDir`" `"$testDir`""
-      $output = (corral run -- ponyc $configFlag $ponyArgs --cpu "$Arch" --output "$buildDir" "$testDir")
+      Write-Host "corral run -- ponyc $configFlag $ponyArgs --output `"$buildDir`" `"$testDir`""
+      $output = (corral run -- ponyc $configFlag $ponyArgs --output "$buildDir" "$testDir")
       $output | ForEach-Object { Write-Host $_ }
       if ($LastExitCode -ne 0) { throw "Error" }
       break testFiles
@@ -167,7 +184,7 @@ function BuildLibs
     {
       Push-Location $libreSslSrc
       (Get-Content "$libreSslSrc\CMakeLists.txt").replace('add_definitions(-Dinline=__inline)', "add_definitions(-Dinline=__inline)`nadd_definitions(-DPATH_MAX=255)") | Set-Content "$libreSslSrc\CMakeLists.txt"
-      cmake.exe $libreSslSrc -Thost=x64 -A x64 -DCMAKE_INSTALL_PREFIX="$libsDir" -DCMAKE_BUILD_TYPE="Release"
+      cmake.exe $libreSslSrc -Thost="$THost" -A $Arch -DCMAKE_INSTALL_PREFIX="$libsDir" -DCMAKE_BUILD_TYPE="Release"
       if ($LastExitCode -ne 0) { Pop-Location; throw "Error configuring $libreSsl" }
       cmake.exe --build . --target install --config Release
       if ($LastExitCode -ne 0) { Pop-Location; throw "Error building $libreSsl" }
@@ -264,7 +281,7 @@ switch ($Command.ToLower())
     if (-not $isLibrary)
     {
       $binDir = Join-Path -Path $Destdir -ChildPath "bin"
-      $package = "$target-x86-64-pc-windows-msvc.zip"
+      $package = "$target-$Arch-pc-windows-msvc.zip"
       Write-Host "Creating $package..."
 
       Compress-Archive -Path $binDir -DestinationPath "$buildDir\..\$package" -Force
