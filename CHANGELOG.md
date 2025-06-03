@@ -9,6 +9,7 @@ All notable changes to this library will be documented in this file. This projec
 
 ### Added
 
+- Enable building on arm64 Windows ([PR #111](https://github.com/ponylang/crypto/pull/111))
 
 ### Changed
 
