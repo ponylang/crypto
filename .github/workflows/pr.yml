@@ -76,7 +76,7 @@ jobs:
         run: make test config=debug ssl=3.0.x
 
   test-x86-64-windows-vs-ponyc-release:
-    name: Windows X86-64 (LibreSSL) with most recent ponyc release
+    name: Windows x86-64 (LibreSSL) with most recent ponyc release
     runs-on: windows-2022
     steps:
       - uses: actions/checkout@v4.1.1
@@ -91,7 +91,7 @@ jobs:
           .\make.ps1 -Command test 2>&1;
 
   test-arm64-windows-vs-ponyc-release:
-    name: Windows Arm64 (LibreSSL) with most recent ponyc release
+    name: Windows arm64 (LibreSSL) with most recent ponyc release
     runs-on: windows-11-arm
     steps:
       - uses: actions/checkout@v4.1.1
