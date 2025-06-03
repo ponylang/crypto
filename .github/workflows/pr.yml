@@ -75,7 +75,7 @@ jobs:
       - name: Test
         run: make test config=debug ssl=3.0.x
 
-  test-x64-windows-vs-ponyc-release:
+  test-x86-64-windows-vs-ponyc-release:
     name: Windows x64 (LibreSSL) with most recent ponyc release
     runs-on: windows-2022
     steps:
@@ -97,9 +97,9 @@ jobs:
       - uses: actions/checkout@v4.1.1
       - name: Test with most recent ponyc release
         run: |
-          Invoke-WebRequest https://dl.cloudsmith.io/public/ponylang/releases/raw/versions/latest/ponyc-arm64-pc-windows-msvc.zip -OutFile C:\ponyc.zip;
+          Invoke-WebRequest https://dl.cloudsmith.io/public/ponylang/nightlies/raw/versions/latest/ponyc-arm64-pc-windows-msvc.zip -OutFile C:\ponyc.zip;
           Expand-Archive -Force -Path C:\ponyc.zip -DestinationPath C:\ponyc;
-          Invoke-WebRequest https://dl.cloudsmith.io/public/ponylang/releases/raw/versions/latest/corral-arm64-pc-windows-msvc.zip -OutFile C:\corral.zip;
+          Invoke-WebRequest https://dl.cloudsmith.io/public/ponylang/nightlies/raw/versions/latest/corral-arm64-pc-windows-msvc.zip -OutFile C:\corral.zip;
           Expand-Archive -Force -Path C:\corral.zip -DestinationPath C:\ponyc;
           $env:PATH = 'C:\ponyc\bin;' + $env:PATH;
           .\make.ps1 -Command libs 2>&1;
