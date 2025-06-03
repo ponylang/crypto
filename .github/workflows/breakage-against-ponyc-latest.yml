@@ -4,6 +4,9 @@ on:
   repository_dispatch:
     types: [shared-docker-linux-builders-updated]
 
+permissions:
+  packages: read
+
 jobs:
   test-libressl-3-vs-ponyc-latest:
     name: libressl 3.x with ponyc main
