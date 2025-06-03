@@ -2,17 +2,11 @@
 
 All notable changes to this library will be documented in this file. This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a CHANGELOG](http://keepachangelog.com/).
 
-## [unreleased] - unreleased
-
-### Fixed
-
+## [1.2.4] - 2025-06-03
 
 ### Added
 
 - Enable building on arm64 Windows ([PR #111](https://github.com/ponylang/crypto/pull/111))
-
-### Changed
-
 
 ## [1.2.3] - 2024-04-20
 
