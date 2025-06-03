@@ -76,7 +76,7 @@ jobs:
         run: make test config=debug ssl=3.0.x
 
   test-x86-64-windows-vs-ponyc-release:
-    name: Windows x86-64 (LibreSSL) with most recent ponyc release
+    name: Windows X86-64 (LibreSSL) with most recent ponyc release
     runs-on: windows-2022
     steps:
       - uses: actions/checkout@v4.1.1
