@@ -77,7 +77,7 @@ jobs:
 
   test-x86-64-windows-vs-ponyc-release:
     name: Windows x86-64 (LibreSSL) with most recent ponyc release
-    runs-on: windows-2022
+    runs-on: windows-2025
     steps:
       - uses: actions/checkout@v4.1.1
       - name: Test with most recent ponyc release
